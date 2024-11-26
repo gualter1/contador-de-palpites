@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futebol - Formulário</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        #botao-calcular {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #botao-calcular:hover {
+            background-color: #0056b3;
+        }
+
+        #exibe-resultado {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Contador de Palpites</h1>
+        <p>Bem-vindo ao contador de palpites! Siga as instruções abaixo para utilizá-lo:</p>
+        <ul>
+            <li>Na primeira caixa de texto, escreva os resultados seguindo este padrão: <strong>1-1/2-1/2-0</strong>. Todas as ligas que tem este padrao podem ultilizar o contador.</li>
+            <li>Na segunda caixa de texto, cole sua cartela. Evite cartelas muito editadas, pois o contador lê a maioria delas, mas edições como o uso de fontes personalizadas podem causar erros.</li>
+            <li>Clique no botão "Calcular minha súmula" para fazer a contagem dos gols.</li>
+            <li>Note que o resultado ao lado do clube pode aparecer incorreto; sempre revise as contagens.</li>
+            <li>Jogadores com números no nome podem sofrer alterações, exemplo: <strong>d10s messic</strong> aparecerá como <strong>ds messic</strong>.</li>
+            <li>Para jogos anulados, use sempre o placar <strong>9-9</strong> nos resultados.</li>
+            <li>É possível fazer a parcial dos gols a partir de 2 resultados, coloque os 2 resultados, a cartela e o contador fará o resto do trabalho.</li>
+            <li>Por enquanto o contador não identifica palpites anulados por erro no envio.</li>
+            <li>undefined = jogador a menos</li>
+            <li>Erros ou sugestões? Clique no botão "Fale com o Desenvolvedor".</li>
+        </ul>
+        <form>
+            <label for="resultados">Cole ou escreva abaixo os resultados da rodada:</label>
+            <textarea id="resultados" rows="5" placeholder="Digite os resultados, por exemplo: 1-1/2-2/3-3"></textarea>
+            
+            <label for="sua-cartela">Cole ou escreva abaixo a sua cartela:</label>
+            <textarea id="sua-cartela" rows="5" placeholder="Cole sua cartela completa, que o contador fará o resto do trabalho"></textarea>
+            
+            <div class="buttons">
+                <button type="button" onclick="calcularSumula()" id="botao-calcular"><strong>Calcular minha súmula</strong></button>
+            </div>
+            <div id="resultado-final"></div>
+            <button id="copiar-btn">Copiar Resultado</button>
+        </form>
+        <div class="whatsapp">
+            <a href="https://wa.me/5585987636157" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" width="20">
+                Fale com o Desenvolvedor
+            </a>
+        </div>
+    </div>
+    <footer>
+        <p>Feito com ajuda do <strong>ChatGPT</strong></p>
+    </footer>
+    <script src="teste2.js"></script>
+</body>
+
+</html>
