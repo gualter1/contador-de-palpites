@@ -211,3 +211,11 @@ button:hover {
 .button:hover {
   background-color: #0056b3; /* Cor ao passar o mouse */
 }
+
+.footer-text {
+  text-align: right; /* Alinha o texto à direita */
+  color: white; /* Define a cor branca */
+  margin: 0; /* Remove margens padrão, opcional */
+  padding: 10px; /* Espaçamento interno, opcional */
+  font-size: 14px; /* Tamanho do texto, ajuste conforme preferir */
+}
