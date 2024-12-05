@@ -1,6 +1,8 @@
+//Numeros que nao podem ser usados 99, 190, 196, 198, 199
+
 const regexEmoji = /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|[\r])|[~_+()]|⬜/g
 const rgxNumDp = /\d{2,3}/g
-const regexClube = /clube.+/gmi
+const regexClube = /clube.+/
 const rgxNomeEPalpite = /[A-Za-zÀ-ÿ]+.+\s+(\d-\d\/)+(\d-\d)/g
 const rgxNome = /([A-Za-zÀ-ÿ.]+\s{1,2}){1,5}[A-Za-zÀ-ÿ]+|[A-Za-zÀ-ÿ]+/gmi
 const rgxPalpite = /(\d-\d\/)+(\d-\d)/g
@@ -8,6 +10,7 @@ const rgxhifen = /-/g
 const rgxbarra = /\//g
 const rgxPalpite2 = /\d|-|\r?\n(.+)(\d-\d\/)+(\d-\d)|:|\*/g
 const palpiteFake = ['199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199'];
+const palpiteFake2 = ['190', '190', '190', '190', '190', '190', '190', '190', '190', '190', '190', '190'];
 const msgNulo = 'Achei um palpite anulado, verifique quem foi e se a contagem esta correta.'
 
 function preparaResultado(resultado) {
@@ -34,6 +37,7 @@ function preparaResultado(resultado) {
 function preparaCartela(cartela) {
     const nomePalpite = cartela.replace(regexEmoji, '').replace(rgxNumDp, ' ').match(rgxNomeEPalpite).toString();
     let clube = cartela.match(regexClube) == undefined ? 'Time' : cartela.match(regexClube);
+    
     const palpites = nomePalpite.match(rgxPalpite);
     let nomes = nomePalpite.match(rgxNome);
     if (nomes.length > palpites.length) {
@@ -49,10 +53,10 @@ function recebePalpites(palpites) {
     let jog4 = palpites[3].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog5 = palpites[4].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog6 = palpites[5].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
-    let jog7 = palpites[6].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
-    let jog8 = palpites[7] == undefined ? palpites.jog8 = palpiteFake : palpites[7].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
-    let jog9 = palpites[8] == undefined ? palpites.jog9 = palpiteFake : palpites[8].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
-    let jog10 = palpites[9] == undefined ? palpites.jog10 = palpiteFake : palpites[9].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
+    let jog7 = palpites[6] == undefined ? palpites.jog7 = palpiteFake2 : palpites[6].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
+    let jog8 = palpites[7] == undefined ? palpites.jog8 = palpiteFake2 : palpites[7].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
+    let jog9 = palpites[8] == undefined ? palpites.jog9 = palpiteFake2 : palpites[8].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
+    let jog10 = palpites[9] == undefined ? palpites.jog10 = palpiteFake2 : palpites[9].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
 
     let jogadores = [jog1, jog2, jog3, jog4, jog5, jog6, jog7, jog8, jog9, jog10]
 

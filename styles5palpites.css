@@ -1,0 +1,187 @@
+/* Estilo geral do body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20240603/pngtree-soccer-or-football-background-image-image_15855158.jpg'); /* Substitua pela URL de uma imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+    font-size: 2rem;
+    color: #007BFF;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Parágrafos e listas */
+p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+/* Botão */
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo do botão WhatsApp */
+.whatsapp {
+    margin-top: 20px;
+    text-align: center;
+}
+.whatsapp a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #25d366;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp a:hover {
+    background-color: #1ebe5b;
+}
+
+.whatsapp img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+/* Div para o resultado final */
+#resultado-final {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #28a745;
+}
+.input-grande {
+    width: 100%; /* Ocupa toda a largura disponível */
+    margin-bottom: 15px; /* Espaço abaixo do input */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 1rem; /* Tamanho da fonte */
+    box-sizing: border-box; /* Inclui bordas e padding no cálculo do tamanho */
+}
+
+.input-grande {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Estilo exclusivo para a primeira caixa de texto */
+#resultados {
+    padding: 20px; /* Maior espaçamento interno */
+    border: 2px solid #007BFF; /* Personalização adicional (opcional) */
+}
+#resultados::placeholder {
+    font-size: 1.5rem;
+}
+
+/* Estilo exclusivo para a segunda caixa de texto */
+#sua-cartela {
+    padding: 35px; /* Menor espaçamento interno */
+    
+}
+#sua-cartela {
+    border: 2px solid #28a745; /* Personalização adicional (opcional) */
+    height: 400px; /* Altura maior para acomodar o padding */
+    padding: 20px; /* Mantém o espaçamento interno */
+    box-sizing: border-box; /* Inclui o padding no cálculo do tamanho */
+}
+
+#sua-cartela::placeholder {
+    font-size: 1.5rem; /* Ajusta o tamanho do texto do placeholder */
+}
+#resultado-final {
+    color: black;
+}
+#copiar-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Cor verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#copiar-btn:hover {
+    background-color: #45a049; /* Cor mais escura ao passar o mouse */
+}
