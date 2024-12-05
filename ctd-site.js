@@ -6,10 +6,13 @@ const rgxNome = /([A-Za-zÀ-ÿ.]+\s{1,2}){1,5}[A-Za-zÀ-ÿ]+|[A-Za-zÀ-ÿ]+/gmi
 const rgxPalpite = /(\d-\d\/)+(\d-\d)/g
 const rgxhifen = /-/g
 const rgxbarra = /\//g
-const rgxPalpite2 = /\r?\n(.+)(\d-\d\/)+(\d-\d)|:|\*/g
+const rgxPalpite2 = /\d|-|\r?\n(.+)(\d-\d\/)+(\d-\d)|:|\*/g
+const palpiteFake = ['199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199'];
+const msgNulo = 'Achei um palpite anulado, verifique quem foi e se a contagem esta correta.'
 
 function preparaResultado(resultado) {
     const resultados = resultado.match(rgxPalpite).toString().replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
+    const valorResultados = resultados.length
     resultados[0] == 99 ? resultados[0] = '196' : resultados[0]
     resultados[1] == 99 ? resultados[1] = '196' : resultados[1]
     resultados[2] == 99 ? resultados[2] = '196' : resultados[2]
@@ -20,16 +23,17 @@ function preparaResultado(resultado) {
     resultados[7] == 99 ? resultados[7] = '196' : resultados[7]
     resultados[8] == 99 ? resultados[8] = '196' : resultados[8]
     resultados[9] == 99 ? resultados[9] = '196' : resultados[9]
-    //analisar indice [10] e [11]
+    resultados[10] == 99 ? resultados[10] = '196' : resultados[10]
+    resultados[11] == 99 ? resultados[11] = '196' : resultados[11]
     while (resultados.length < 12) {
         resultados.push('198')
     }
-    return resultados;
+    return { resultados, valorResultados };
 }
 
 function preparaCartela(cartela) {
     const nomePalpite = cartela.replace(regexEmoji, '').replace(rgxNumDp, ' ').match(rgxNomeEPalpite).toString();
-    let clube = cartela.match(regexClube) == undefined? 'Time' : cartela.match(regexClube);
+    let clube = cartela.match(regexClube) == undefined ? 'Time' : cartela.match(regexClube);
     const palpites = nomePalpite.match(rgxPalpite);
     let nomes = nomePalpite.match(rgxNome);
     if (nomes.length > palpites.length) {
@@ -39,7 +43,6 @@ function preparaCartela(cartela) {
 }
 
 function recebePalpites(palpites) {
-    const palpiteFake = ['199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199'];
     let jog1 = palpites[0].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog2 = palpites[1].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog3 = palpites[2].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
@@ -51,8 +54,28 @@ function recebePalpites(palpites) {
     let jog9 = palpites[8] == undefined ? palpites.jog9 = palpiteFake : palpites[8].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog10 = palpites[9] == undefined ? palpites.jog10 = palpiteFake : palpites[9].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
 
-    return { jog1, jog2, jog3, jog4, jog5, jog6, jog7, jog8, jog9, jog10 }
+    let jogadores = [jog1, jog2, jog3, jog4, jog5, jog6, jog7, jog8, jog9, jog10]
+
+    return jogadores
 }
+
+function verificaPalpiteNulo(palpites, resultadosLength) {
+    let jog1 = resultadosLength > palpites[0].length ? palpiteFake : palpites[0]
+    let jog2 = resultadosLength > palpites[1].length ? palpiteFake : palpites[1]
+    let jog3 = resultadosLength > palpites[2].length ? palpiteFake : palpites[2]
+    let jog4 = resultadosLength > palpites[3].length ? palpiteFake : palpites[3]
+    let jog5 = resultadosLength > palpites[4].length ? palpiteFake : palpites[4]
+    let jog6 = resultadosLength > palpites[5].length ? palpiteFake : palpites[5]
+    let jog7 = resultadosLength > palpites[6].length ? palpiteFake : palpites[6]
+    let jog8 = resultadosLength > palpites[7].length ? palpiteFake : palpites[7]
+    let jog9 = resultadosLength > palpites[8].length ? palpiteFake : palpites[8]
+    let jog10 = resultadosLength > palpites[9].length ? palpiteFake : palpites[9]
+    let jogadores = [jog1, jog2, jog3, jog4, jog5, jog6, jog7, jog8, jog9, jog10]
+
+    return { jog1, jog2, jog3, jog4, jog5, jog6, jog7, jog8, jog9, jog10, jogadores }
+}
+
+
 
 function comparacaoDeResultados(resultado, palpites) {
     let jogador1 = [resultado[0] == palpites.jog1[0], resultado[1] == palpites.jog1[1], resultado[2] == palpites.jog1[2], resultado[3] == palpites.jog1[3], resultado[4] == palpites.jog1[4], resultado[5] == palpites.jog1[5], resultado[6] == palpites.jog1[6], resultado[7] == palpites.jog1[7], resultado[8] == palpites.jog1[8], resultado[9] == palpites.jog1[9], resultado[10] == palpites.jog1[10], resultado[11] == palpites.jog1[11]]
@@ -77,15 +100,39 @@ function soma(comparacao) {
     return soma
 }
 
-function processarPalpites(resultado, cartela) {
-    const resultadosProcessados = preparaResultado(resultado); // Processa os resultados
+
+function acusaNulo(palpites) {
+    let msg = ''
+    for (let i = 0; i < palpites.jogadores.length; i++) {
+        if (palpites.jogadores[i] == palpiteFake) {
+            msg = alert(msgNulo)
+            break
+        }
+    }
+    return msg
+}
+
+function botaoCalcular(resultado, cartela) {
+    const resultadosProcessados = preparaResultado(resultado)
     const resultadosDosJgs = resultado.match(rgxPalpite).toString()
+    const resultadoJgs = resultadosProcessados.resultados
+    const resultadosLength = resultadosProcessados.valorResultados
     const cartelaPreparada = preparaCartela(cartela); // Processa a cartela
     const nomeClube = cartelaPreparada.clube; // Nome do clube
     const nomesPalpite = cartelaPreparada.nomes; // Nomes dos jogadores
     const palpitesGrupo = cartelaPreparada.palpites; // Palpites dos jogadores
     const palpitesindividual = recebePalpites(palpitesGrupo); // Palpites individuais
-    const comparacao = comparacaoDeResultados(resultadosProcessados, palpitesindividual); // Compara resultados
+    const verificaNulo = verificaPalpiteNulo(palpitesindividual, resultadosLength);
+    acusaNulo(verificaNulo)
+
+    const comparacao = comparacaoDeResultados(resultadoJgs, verificaNulo); // Compara resultados
+
+    let somaJogadores = soma(comparacao.jogador1) + soma(comparacao.jogador2) +
+        soma(comparacao.jogador3) + soma(comparacao.jogador4) +
+        soma(comparacao.jogador5) + soma(comparacao.jogador6) +
+        soma(comparacao.jogador7) + soma(comparacao.jogador8) +
+        soma(comparacao.jogador9) + soma(comparacao.jogador10)
+
     let jogadores = [
         soma(comparacao.jogador1), soma(comparacao.jogador2),
         soma(comparacao.jogador3), soma(comparacao.jogador4),
@@ -94,75 +141,40 @@ function processarPalpites(resultado, cartela) {
         soma(comparacao.jogador9), soma(comparacao.jogador10),
     ];
 
-    let somaJogadores = soma(comparacao.jogador1) + soma(comparacao.jogador2) +
-        soma(comparacao.jogador3) + soma(comparacao.jogador4) +
-        soma(comparacao.jogador5) + soma(comparacao.jogador6) +
-        soma(comparacao.jogador7) + soma(comparacao.jogador8) +
-        soma(comparacao.jogador9) + soma(comparacao.jogador10)
-
     let resultadoFinal = (`${resultadosDosJgs}
-${nomeClube.toString()} = ${somaJogadores} 
-1 ${nomesPalpite[0]} = ${jogadores[0]} 
-2 ${nomesPalpite[1]} = ${jogadores[1]}
-3 ${nomesPalpite[2]} = ${jogadores[2]}
-4 ${nomesPalpite[3]} = ${jogadores[3]}
-5 ${nomesPalpite[4]} = ${jogadores[4]}
-6 ${nomesPalpite[5]} = ${jogadores[5]}
-7 ${nomesPalpite[6]} = ${jogadores[6]} 
-8 ${nomesPalpite[7]} = ${jogadores[7]} 
-9 ${nomesPalpite[8]} = ${jogadores[8]} 
-10 ${nomesPalpite[9]} = ${jogadores[9]} `)
+        ${nomeClube.toString()} = ${somaJogadores} 
+        1 ${nomesPalpite[0]} = ${jogadores[0]} 
+            2 ${nomesPalpite[1]} = ${jogadores[1]}
+            3 ${nomesPalpite[2]} = ${jogadores[2]}
+            4 ${nomesPalpite[3]} = ${jogadores[3]}
+            5 ${nomesPalpite[4]} = ${jogadores[4]}
+            6 ${nomesPalpite[5]} = ${jogadores[5]}
+            7 ${nomesPalpite[6]} = ${jogadores[6]} 
+            8 ${nomesPalpite[7]} = ${jogadores[7]} 
+            9 ${nomesPalpite[8]} = ${jogadores[8]} 
+            10 ${nomesPalpite[9]} = ${jogadores[9]}`)
+
 
     return resultadoFinal
 }
 
-// const teste = botaoCalcular(tresultado, tcartela)
-// console.log(teste)
-
-
-
-
-
-
-// Função que será chamada quando o botão for clicado
 function calcularSumula() {
     const tresultado = document.getElementById('resultados').value;
     const tcartela = document.getElementById('sua-cartela').value;
 
-    const resultados = processarPalpites(tresultado, tcartela);
+    const resultados = botaoCalcular(tresultado, tcartela);
 
-    
+
     document.getElementById('resultado-final').innerText = resultados;
 }
 
 document.getElementById('copiar-btn').addEventListener('click', function() {
-    // Seleciona o texto dentro do #resultado-final
     const resultadoText = document.getElementById('resultado-final').innerText;
-
-    // Cria um campo temporário para copiar o texto
     const tempTextArea = document.createElement('textarea');
     tempTextArea.value = resultadoText; // Define o texto a ser copiado
     document.body.appendChild(tempTextArea); // Adiciona o campo ao corpo da página
-
-    // Seleciona o texto do campo
     tempTextArea.select();
     tempTextArea.setSelectionRange(0, 99999); // Para dispositivos móveis
-
-    // Copia o texto para a área de transferência
     document.execCommand('copy');
-
-    // Remove o campo temporário da página
     document.body.removeChild(tempTextArea);
-
-    // Opcional: Alerta para informar que o texto foi copiado
-    // alert('Resultado copiado!');
 });
-
-
-// // A função que processa os palpites (exemplo)
-// // Substitua pelo seu código já existente de processamento
-// function processarPalpites(tresultado, tcartela) {
-//     // Exemplo simples: apenas retorna os valores das caixas concatenados
-//     // Aqui você substitui pelo seu código de processamento
-//     return `Resultados: ${resultados}\nCartela: ${cartela}`;
-// }
