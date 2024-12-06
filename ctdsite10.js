@@ -40,12 +40,14 @@ function preparaCartela(cartela) {
     
     const palpites = nomePalpite.match(rgxPalpite);
     let nomes = nomePalpite.match(rgxNome);
-    if (nomes == undefined) {
-        nomes = 'jogador fake' 
-    } 
     if (nomes.length > palpites.length) {
         nomes = nomePalpite.toString().replace(rgxPalpite2, '').split(',')
     }
+    for (let i = 0, i < nomes.length, i++ {
+        if (nomes[i] == undefined) {
+        nomes = 'jogador fake' 
+    } 
+    } 
     return { clube, nomes, palpites };
 }
 
