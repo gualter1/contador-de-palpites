@@ -2,7 +2,8 @@
 
 const regexEmoji = /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|[\r])|[~_+()]|⬜/g
 const rgxNumDp = /\d{2,3}/g
-const regexClube = /clube.+/gmi
+const rgxCapturaClube = /clube.+|time.+/gmi
+const rgxClube = /clube:|time:/gmi
 const rgxNomeEPalpite = /[A-Za-zÀ-ÿ]+.+\s+(\d-\d\/)+(\d-\d)/g
 const rgxNome = /([A-Za-zÀ-ÿ.]+\s{1,2}){1,5}[A-Za-zÀ-ÿ]+|[A-Za-zÀ-ÿ]+/gmi
 const rgxPalpite = /(\d-\d\/)+(\d-\d)/g
@@ -36,7 +37,7 @@ function preparaResultado(resultado) {
 
 function preparaCartela(cartela) {
     const nomePalpite = cartela.replace(regexEmoji, '').replace(rgxNumDp, ' ').match(rgxNomeEPalpite).toString();
-    let clube = cartela.match(regexClube) == undefined ? 'Time' : cartela.match(regexClube);
+    let clube = cartela.match(rgxCapturaClube) == undefined ? 'Nome do Time ' : cartela.match(rgxCapturaClube).toString().replace(rgxClube, '')
     const palpites = nomePalpite.match(rgxPalpite);
     let nomes = nomePalpite.match(rgxNome);
     if (nomes.length > palpites.length) {
