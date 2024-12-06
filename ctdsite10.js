@@ -45,7 +45,7 @@ function preparaCartela(cartela) {
     }
     for (let i = 0, i < nomes.length, i++ {
         if (nomes[i] == undefined) {
-        nomes = 'jogador fake' 
+        nomes[i] = 'jogador fake' 
     } 
     } 
     return { clube, nomes, palpites };
