@@ -44,11 +44,6 @@ function preparaCartela(cartela) {
     if (nomes.length > palpites.length) {
         nomes = nomePalpite.toString().replace(rgxPalpite2, '').split(',')
     }
-    for (let i = 0, i < nomes.length, i++ {
-        if (nomes[i] == undefined) {
-        nomes[i] = 'jogador fake' 
-    } 
-    } 
     return { clube, nomes, palpites };
 }
 
