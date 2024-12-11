@@ -185,3 +185,8 @@ button:hover {
 #copiar-btn:hover {
     background-color: #45a049; /* Cor mais escura ao passar o mouse */
 }
+
+.caixa-pequena {
+    font-size: 30px; /* Aumenta o tamanho para exibir emojis com clareza */
+    text-align: center; /* Centraliza o texto */
+}

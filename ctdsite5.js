@@ -13,6 +13,7 @@ const rgxPalpite2 = /\d|-|\r?\n(.+)(\d-\d\/)+(\d-\d)|:|\*/g
 const palpiteFake = ['199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199', '199'];
 const palpiteFake2 = ['190', '190', '190', '190', '190', '190', '190', '190', '190', '190', '190', '190'];
 const msgNulo = 'Achei um palpite anulado, verifique quem foi e se a contagem esta correta.'
+const rgxAsterisco = /_|\*|\s/gmi
 
 function preparaResultado(resultado) {
     const resultados = resultado.match(rgxPalpite).toString().replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
@@ -98,6 +99,15 @@ function acusaNulo(palpites) {
     return msg
 }
 
+function enfeitaCartela(jogador) {
+    let emoji = document.querySelector('.caixa-emoji').value 
+    emoji.repeat(jogador)
+    if (emoji == '') {
+        emoji = '⚽'
+    }
+    return emoji.repeat(jogador)
+}
+
 function botaoCalcular(resultado, cartela) {
     const resultadosProcessados = preparaResultado(resultado)
     const resultadosDosJgs = resultado.match(rgxPalpite).toString()
@@ -105,7 +115,13 @@ function botaoCalcular(resultado, cartela) {
     const resultadosLength = resultadosProcessados.valorResultados
     const cartelaPreparada = preparaCartela(cartela); // Processa a cartela
     const nomeClube = cartelaPreparada.clube; // Nome do clube
-    const nomesPalpite = cartelaPreparada.nomes; // Nomes dos jogadores
+    let nomesPalpite = cartelaPreparada.nomes; // Nomes dos jogadores
+         for (let i = 0; i < 10; i++) {
+    nomesPalpite[i];
+    if (nomesPalpite[i] == undefined) 
+        nomesPalpite[i] = 'Jogador fake'
+    }
+    
     const palpitesGrupo = cartelaPreparada.palpites; // Palpites dos jogadores
     const palpitesindividual = recebePalpites(palpitesGrupo); // Palpites individuais
     const verificaNulo = verificaPalpiteNulo(palpitesindividual, resultadosLength);
@@ -123,12 +139,12 @@ function botaoCalcular(resultado, cartela) {
     ];
 
     let resultadoFinal = (`${resultadosDosJgs}
-        ${nomeClube.toString()} = ${somaJogadores} 
-        1 ${nomesPalpite[0]} = ${jogadores[0]} 
-            2 ${nomesPalpite[1]} = ${jogadores[1]}
-            3 ${nomesPalpite[2]} = ${jogadores[2]}
-            4 ${nomesPalpite[3]} = ${jogadores[3]}
-            5 ${nomesPalpite[4]} = ${jogadores[4]}`)
+         *${nomeClube.toString()} = ${somaJogadores}* 
+        1 ${nomesPalpite[0]} = ${jogadores[0]} ${enfeitaCartela(jogadores[0])}
+            2 ${nomesPalpite[1]} = ${jogadores[1]} ${enfeitaCartela(jogadores[1])}
+            3 ${nomesPalpite[2]} = ${jogadores[2]} ${enfeitaCartela(jogadores[2])} 
+            4 ${nomesPalpite[3]} = ${jogadores[3]} ${enfeitaCartela(jogadores[3])}
+            5 ${nomesPalpite[4]} = ${jogadores[4]} ${enfeitaCartela(jogadores[4])}`)
 
 
     return resultadoFinal
