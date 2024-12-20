@@ -53,11 +53,12 @@ function comparacaoDeResultados(resultado, palpites) {
     let jogador7 = [resultado[0] == palpites[6][0], resultado[1] == palpites[6][1], resultado[2] == palpites[6][2], resultado[3] == palpites[6][3], resultado[4] == palpites[6][4], resultado[5] == palpites[6][5], resultado[6] == palpites[6][6], resultado[7] == palpites[6][7], resultado[8] == palpites[6][8], resultado[9] == palpites[6][9], resultado[10] == palpites[6][10], resultado[11] == palpites[6][11]]
     let jogador8 = [resultado[0] == palpites[7][0], resultado[1] == palpites[7][1], resultado[2] == palpites[7][2], resultado[3] == palpites[7][3], resultado[4] == palpites[7][4], resultado[5] == palpites[7][5], resultado[6] == palpites[7][6], resultado[7] == palpites[7][7], resultado[8] == palpites[7][8], resultado[9] == palpites[7][9], resultado[10] == palpites[7][10], resultado[11] == palpites[7][11]]
     let jogador9 = [resultado[0] == palpites[8][0], resultado[1] == palpites[8][1], resultado[2] == palpites[8][2], resultado[3] == palpites[8][3], resultado[4] == palpites[8][4], resultado[5] == palpites[8][5], resultado[6] == palpites[8][6], resultado[7] == palpites[8][7], resultado[8] == palpites[8][8], resultado[9] == palpites[8][9], resultado[10] == palpites[8][10], resultado[11] == palpites[8][11]]
-    let jogador10 =[resultado[0] == palpites[9][0], resultado[1] == palpites[9][1], resultado[2] == palpites[9][2], resultado[3] == palpites[9][3], resultado[4] == palpites[9][4], resultado[5] == palpites[9][5], resultado[6] == palpites[9][6], resultado[7] == palpites[9][7], resultado[8] == palpites[9][8], resultado[9] == palpites[9][9], resultado[10] == palpites[9][10], resultado[11] == palpites[9][11]]
+    let jogador10 = [resultado[0] == palpites[9][0], resultado[1] == palpites[9][1], resultado[2] == palpites[9][2], resultado[3] == palpites[9][3], resultado[4] == palpites[9][4], resultado[5] == palpites[9][5], resultado[6] == palpites[9][6], resultado[7] == palpites[9][7], resultado[8] == palpites[9][8], resultado[9] == palpites[9][9], resultado[10] == palpites[9][10], resultado[11] == palpites[9][11]]
     let jogadores = [jogador1, jogador2, jogador3, jogador4, jogador5, jogador6, jogador7, jogador8, jogador9, jogador10]
-    
+
     return jogadores
 }
+
 //soma todos resultados da comparaçao
 function soma(comparacao) {
     let soma = 0;
@@ -68,50 +69,56 @@ function soma(comparacao) {
 }
 //soma jogador por jogador
 function calculaSoma(jogador) {
-let compara1 = soma(jogador[0])
-        let compara2 = soma(jogador[1])
-        let compara3 = soma(jogador[2])
-        let compara4 = soma(jogador[3])
-        let compara5 = soma(jogador[4])
-        let compara6 = soma(jogador[5])
-        let compara7 = soma(jogador[6])
-        let compara8 = soma(jogador[7])
-        let compara9 = soma(jogador[8])
-        let compara10 = soma(jogador[9])
-        let resultadoComparacao = [compara1, compara2, compara3, compara4, compara5, compara6, compara7, compara8, compara9, compara10]
-        return resultadoComparacao
+    let compara1 = soma(jogador[0])
+    let compara2 = soma(jogador[1])
+    let compara3 = soma(jogador[2])
+    let compara4 = soma(jogador[3])
+    let compara5 = soma(jogador[4])
+    let compara6 = soma(jogador[5])
+    let compara7 = soma(jogador[6])
+    let compara8 = soma(jogador[7])
+    let compara9 = soma(jogador[8])
+    let compara10 = soma(jogador[9])
+    let resultadoComparacao = [compara1, compara2, compara3, compara4, compara5, compara6, compara7, compara8, compara9, compara10]
+    return resultadoComparacao
+}
+
+// function valorReferencia() {
+//     let valorReferencia = document.querySelector('.caixa-emoji').value 
+//         if (valorReferencia == '') {
+//         valorReferencia = 0
+//     }
+//     return valorReferencia
+// }
+
+5 // valor que vai ser mudado
+
+
+
+function trocaNomes(nomesPalpite1, nomesPalpite2, jogadores) {
+    let valorReferencia = document.getElementById('caixa-valor').value.trim()
+    if (valorReferencia === '') {
+        valorReferencia = 5
     }
-
-    // function valorReferencia() {
-    //     let valorReferencia = document.querySelector('.caixa-emoji').value 
-    //         if (valorReferencia == '') {
-    //         valorReferencia = 0
-    //     }
-    //     return valorReferencia
-    // }
-
-    5 // valor que vai ser mudado
-    
-    
-    
-    function trocaNomes (nomesPalpite1, nomesPalpite2, jogadores) {
-        let valorReferencia = document.getElementById('caixa-valor').value.trim()
-        if (valorReferencia === '') {
-            valorReferencia = 5
-        }
     let mensagem = []
     for (let i = 0; i < nomesPalpite1.length; i++) {
         for (let j = 0; j < nomesPalpite2.length; j++) {
-                        if (nomesPalpite1[i] !== nomesPalpite2[j] && jogadores[i][j] > valorReferencia) {
-            mensagem.push(`O jogador ${nomesPalpite1[i]} tem ${jogadores[i][j]} iguais ao jogador ${nomesPalpite2[j]}\n`)
+            if (nomesPalpite1[i] !== nomesPalpite2[j] && jogadores[i][j] >= valorReferencia) {
+                mensagem.push(`O jogador ${nomesPalpite1[i]} tem ${jogadores[i][j]} iguais ao jogador ${nomesPalpite2[j]}\n`)
             }
         }
-    } 
+    }
 
     return mensagem
 }
 
+  
+function normalizarFrase(frase) {
+return frase.trim().split(" ").sort().join(" ");
+}
 
+
+  
 function botaoCalcular(cartela, resultado) {
     // recebe e prepara cartela
     let cartela1 = preparaCartela(cartela)
@@ -119,39 +126,46 @@ function botaoCalcular(cartela, resultado) {
     // prepara palpites para comparaçao
     let palpites1 = recebePalpites(cartela1.palpites)
     for (let i = 0; i < palpites1.length; i++) {
-        while (palpites1[i].length < 12 ) {
+        while (palpites1[i].length < 12) {
             palpites1[i].push('199')
         }
     }
-    
+
     let palpites2 = recebePalpites(cartela2.palpites)
     for (let i = 0; i < palpites2.length; i++) {
-        while (palpites2[i].length < 12 ) {
+        while (palpites2[i].length < 12) {
             palpites2[i].push('197')
         }
     }
     let nomesPalpite1 = cartela1.nomes //cartela.txt
     let nomesPalpite2 = cartela2.nomes //resultado1.txt
     //let valorReferencia = valorReferencia()
-
+    
     // armazena todas as comparaçoes true ou false
-    let comparacoes = [comparacaoDeResultados(palpites1[0], palpites2),comparacaoDeResultados(palpites1[1], palpites2),
-        comparacaoDeResultados(palpites1[2], palpites2), comparacaoDeResultados(palpites1[3], palpites2),
-        comparacaoDeResultados(palpites1[4], palpites2), comparacaoDeResultados(palpites1[5], palpites2),
-        comparacaoDeResultados(palpites1[6], palpites2), comparacaoDeResultados(palpites1[7], palpites2),
-        comparacaoDeResultados(palpites1[8], palpites2), comparacaoDeResultados(palpites1[9], palpites2)]
-        
+    let comparacoes = [comparacaoDeResultados(palpites1[0], palpites2), comparacaoDeResultados(palpites1[1], palpites2),
+    comparacaoDeResultados(palpites1[2], palpites2), comparacaoDeResultados(palpites1[3], palpites2),
+    comparacaoDeResultados(palpites1[4], palpites2), comparacaoDeResultados(palpites1[5], palpites2),
+    comparacaoDeResultados(palpites1[6], palpites2), comparacaoDeResultados(palpites1[7], palpites2),
+    comparacaoDeResultados(palpites1[8], palpites2), comparacaoDeResultados(palpites1[9], palpites2)]
+    
     // armazena a soma de todos os comparacoes depois do true ou false
-    let jogadores = [calculaSoma(comparacoes[0]), calculaSoma(comparacoes[1]), calculaSoma(comparacoes[2]), calculaSoma(comparacoes[3]), calculaSoma(comparacoes[4]), 
+    let jogadores = [calculaSoma(comparacoes[0]), calculaSoma(comparacoes[1]), calculaSoma(comparacoes[2]), calculaSoma(comparacoes[3]), calculaSoma(comparacoes[4]),
     calculaSoma(comparacoes[5]), calculaSoma(comparacoes[6]), calculaSoma(comparacoes[7]), calculaSoma(comparacoes[8]), calculaSoma(comparacoes[9])]
     
     
     let mensagem = trocaNomes(nomesPalpite1, nomesPalpite2, jogadores);
-    //mensagem.toString().split(',')
-
-    return mensagem
-    //console.log(mensagem)
+    // mensagem.toString()
     
+    
+    let resultadoFinal = mensagem.filter((frase, index, array) => {
+        let fraseNormalizada = normalizarFrase(frase);
+        return index === array.findIndex(f => normalizarFrase(f) === fraseNormalizada);
+    });
+    
+    // return resultadoFinal
+    console.log(mensagem)
+    console.log(resultadoFinal)
+    return resultadoFinal
 }
 
 
@@ -166,7 +180,7 @@ function verificaIgual() {
     document.getElementById('resultado-final').innerText = resultados;
 }
 
-document.getElementById('copiar-btn').addEventListener('click', function() {
+document.getElementById('copiar-btn').addEventListener('click', function () {
     const resultadoText = document.getElementById('resultado-final').innerText;
     const tempTextArea = document.createElement('textarea');
     tempTextArea.value = resultadoText; // Define o texto a ser copiado
