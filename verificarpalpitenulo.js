@@ -1,9 +1,3 @@
-// const fs = require('fs')
-// const tcartela =  fs.readFileSync('cartela1.txt' , 'utf-8')
-// const tresultado =  fs.readFileSync('resultado.txt' , 'utf-8')
-// //console.log(tcartela);
-
-
 const regexEmoji = /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|[\r])|[~_+()]|⬜/g
 const rgxNumDp = /\d{2,3}/g
 const rgxCapturaClube = /clube.+|time.+/gmi
@@ -18,15 +12,11 @@ const palpiteFake = ['199', '199', '199', '199', '199', '199', '199', '199', '19
 const msgNulo = 'Achei um palpite anulado, verifique onde esta o erro.'
 const msgNormal = 'palpites corretos'
 const rgxAsterisco = /_|\*|\s/gmi
-const resultadosLength = 10 //vai ter que fazer um caixa
-const palpiteFake2 = [];
-while (palpiteFake2.length < resultadosLength)
-        {palpiteFake2.push('190')}
 
 function preparaCartela(cartela) {
     const nomePalpite = cartela.replace(regexEmoji, '').replace(rgxNumDp, ' ').match(rgxNomeEPalpite).toString();
-        let clube = cartela.match(rgxCapturaClube) == undefined ? 'Nome do Time ' : cartela.match(rgxCapturaClube).toString().replace(rgxClube, '').replace(rgxAsterisco, '')
-    
+    let clube = cartela.match(rgxCapturaClube) == undefined ? 'Nome do Time ' : cartela.match(rgxCapturaClube).toString().replace(rgxClube, '').replace(rgxAsterisco, '')
+
     const palpites = nomePalpite.match(rgxPalpite);
     let nomes = nomePalpite.match(rgxNome);
     if (nomes.length > palpites.length) {
@@ -35,7 +25,6 @@ function preparaCartela(cartela) {
     return { clube, nomes, palpites };
 }
 
-//verificar se precisar usar o palptefake2 em undefined e verificar tbm se precisa colocar undefined em tudo
 function recebePalpites(palpites) {
     let jog1 = palpites[0].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog2 = palpites[1].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
@@ -47,73 +36,77 @@ function recebePalpites(palpites) {
     let jog8 = palpites[7] == undefined ? palpites.jog8 = palpiteFake2 : palpites[7].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog9 = palpites[8] == undefined ? palpites.jog9 = palpiteFake2 : palpites[8].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
     let jog10 = palpites[9] == undefined ? palpites.jog10 = palpiteFake2 : palpites[9].replace(rgxhifen, '').replace(rgxbarra, ',').split(',');
-
-
+    
     let jogadores = [jog1, jog2, jog3, jog4, jog5, jog6, jog7, jog8, jog9, jog10]
     return jogadores
 }
 
-function verificaPalpiteNulo(palpites) {
-    let jog1 = resultadosLength != palpites[0].length ? palpiteFake : palpites[0]
-    let jog2 = resultadosLength != palpites[1].length ? palpiteFake : palpites[1]
-    let jog3 = resultadosLength != palpites[2].length ? palpiteFake : palpites[2]
-    let jog4 = resultadosLength != palpites[3].length ? palpiteFake : palpites[3]
-    let jog5 = resultadosLength != palpites[4].length ? palpiteFake : palpites[4]
-    let jog6 = resultadosLength != palpites[5].length ? palpiteFake : palpites[5]
-    let jog7 = resultadosLength != palpites[6].length ? palpiteFake : palpites[6]
-    let jog8 = resultadosLength != palpites[7].length ? palpiteFake : palpites[7]
-    let jog9 = resultadosLength != palpites[8].length ? palpiteFake : palpites[8]
-    let jog10 = resultadosLength != palpites[9].length ? palpiteFake : palpites[9] 
+function verificaPalpiteNulo(palpites, valor) {
+    let jog1 = valor != palpites[0].length ? palpiteFake : palpites[0]
+    let jog2 = valor != palpites[1].length ? palpiteFake : palpites[1]
+    let jog3 = valor != palpites[2].length ? palpiteFake : palpites[2]
+    let jog4 = valor != palpites[3].length ? palpiteFake : palpites[3]
+    let jog5 = valor != palpites[4].length ? palpiteFake : palpites[4]
+    let jog6 = valor != palpites[5].length ? palpiteFake : palpites[5]
+    let jog7 = valor != palpites[6].length ? palpiteFake : palpites[6]
+    let jog8 = valor != palpites[7].length ? palpiteFake : palpites[7]
+    let jog9 = valor != palpites[8].length ? palpiteFake : palpites[8]
+    let jog10 = valor != palpites[9].length ? palpiteFake : palpites[9]
 
     let jogadores = [jog1, jog2, jog3, jog4, jog5, jog6, jog7, jog8, jog9, jog10]
     
-    return jogadores 
+    return jogadores
 }
 
-function juntaNulo (jogadores) {
+function acusaNulo(jogadores) {
     let msgfinal = []
     for (let i = 0; i < jogadores.length; i++) {
         if (jogadores[i] === palpiteFake) {
             msgfinal.push(msgNulo)
-        } else if(jogadores[i] != palpiteFake2) {
+        } else if (jogadores[i] != palpiteFake2) {
             msgfinal.push(msgNormal)
-         } 
-     }
-return msgfinal
+        }
+    }
+    return msgfinal
 }
 
+function numeroComparacao(valor) {
+   let numero = valor
+   if (numero == '') {
+        numero = 10
+    } 
+    console.log(numero)
+    return numero
+} 
+
+const palpiteFake2 = [];
+while (palpiteFake2.length < numeroComparacao()) 
+    { palpiteFake2.push('190') }
+console.log(palpiteFake2)
+
 function final(tcartela) {
+    const valorNumero = document.getElementById('caixa-valor').value
+    const valorCaixa = numeroComparacao(valorNumero)
     const cartelaPreparada = preparaCartela(tcartela); // Processa a cartela
     const nomeClube = cartelaPreparada.clube; // Nome do clube
     let nomesPalpite = cartelaPreparada.nomes; // Nomes dos jogadores
     const palpitesGrupo = cartelaPreparada.palpites; // Palpites dos jogadores
     const palpitesindividual = recebePalpites(palpitesGrupo); // Palpites individuais
-    const verificaNulo = verificaPalpiteNulo(palpitesindividual);
-    const resultadoFinal = juntaNulo(verificaNulo);
-    
+    const verificaNulo = verificaPalpiteNulo(palpitesindividual, valorCaixa);
+    const resultadoFinal = acusaNulo(verificaNulo);
+
     let msg = []
     for (let i = 0; i < resultadoFinal.length; i++) {
         msg.push(`${resultadoFinal[i]}`)
     }
-    
+
     let resultado = ''
     for (let i = 0; i < msg.length; i++) {
         resultado += `${nomesPalpite[i]} --- ${msg[i]}\n`;
     }
     return resultado
-
+    
 }
-
-
-// function acusaNulo(palpites) {
-//     let msg = ''
-//     for (let i = 0; i < palpites.jogadores.length; i++) {
-//         if (palpites.jogadores[i] == palpiteFake) {
-//             msg = msgNulo
-//         }
-//     }
-//     return msg
-// }
 
 
 function verificaIgual() {
@@ -122,14 +115,13 @@ function verificaIgual() {
 
     const resultados = final(tcartela);
 
-
     document.getElementById('resultado-final').innerText = resultados;
 }
 
-    
-    
-    
-    
+
+
+
+
 
 
 
@@ -179,7 +171,7 @@ function verificaIgual() {
 // function botaoCalcular(resultado, cartela) {
 //     for (let i = 0; i < 10; i++) {
 //     nomesPalpite[i];
-//     if (nomesPalpite[i] == undefined) 
+//     if (nomesPalpite[i] == undefined)
 //         nomesPalpite[i] = 'Jogador fake'
 //     }
 
@@ -202,16 +194,16 @@ function verificaIgual() {
 //     ];
 
 //     let resultadoFinal = (`${resultadosDosJgs}
-//         *${nomeClube.toString()} = ${somaJogadores}* 
+//         *${nomeClube.toString()} = ${somaJogadores}*
 //         1 ${nomesPalpite[0]} = ${jogadores[0]}
 //             2 ${nomesPalpite[1]} = ${jogadores[1]}
-//             3 ${nomesPalpite[2]} = ${jogadores[2]} 
+//             3 ${nomesPalpite[2]} = ${jogadores[2]}
 //             4 ${nomesPalpite[3]} = ${jogadores[3]}
 //             5 ${nomesPalpite[4]} = ${jogadores[4]}
 //             6 ${nomesPalpite[5]} = ${jogadores[5]}
 //             7 ${nomesPalpite[6]} = ${jogadores[6]}
-//             8 ${nomesPalpite[7]} = ${jogadores[7]} 
-//             9 ${nomesPalpite[8]} = ${jogadores[8]} 
+//             8 ${nomesPalpite[7]} = ${jogadores[7]}
+//             9 ${nomesPalpite[8]} = ${jogadores[8]}
 //             10 ${nomesPalpite[9]} = ${jogadores[9]}`)
 
 
