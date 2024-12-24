@@ -131,7 +131,7 @@ button:hover {
     padding: 20px; /* Espaçamento interno */
     border: 1px solid #ccc; /* Borda padrão */
     border-radius: 4px; /* Bordas arredondadas */
-    font-size: rem; /* Tamanho da fonte */
+    font-size: 1rem; /* Tamanho da fonte */
     box-sizing: border-box; /* Inclui bordas e padding no cálculo do tamanho */
 }
 
@@ -149,9 +149,12 @@ button:hover {
 #resultados {
     padding: 20px; /* Maior espaçamento interno */
     border: 2px solid #007BFF; /* Personalização adicional (opcional) */
+    height: 400px; /* Altura maior para acomodar o padding */
+    padding: 20px; /* Mantém o espaçamento interno */
+    box-sizing: border-box; /* Inclui o padding no cálculo do tamanho */
 }
 #resultados::placeholder {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 /* Estilo exclusivo para a segunda caixa de texto */
@@ -167,7 +170,7 @@ button:hover {
 }
 
 #sua-cartela::placeholder {
-    font-size: 1.2rem; /* Ajusta o tamanho do texto do placeholder */
+    font-size: 1.5rem; /* Ajusta o tamanho do texto do placeholder */
 }
 #resultado-final {
     color: black;
