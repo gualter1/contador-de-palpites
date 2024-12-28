@@ -90,6 +90,12 @@ function final(tcartela) {
     const cartelaPreparada = preparaCartela(tcartela); // Processa a cartela
     const nomeClube = cartelaPreparada.clube; // Nome do clube
     let nomesPalpite = cartelaPreparada.nomes; // Nomes dos jogadores
+    for (let i = 0; i < 10; i++) {
+        nomesPalpite[i];
+        if (nomesPalpite[i] == undefined) 
+            nomesPalpite[i] = 'Jogador fake'
+        }
+        
     const palpitesGrupo = cartelaPreparada.palpites; // Palpites dos jogadores
     const palpitesindividual = recebePalpites(palpitesGrupo); // Palpites individuais
     const verificaNulo = verificaPalpiteNulo(palpitesindividual, valorCaixa);

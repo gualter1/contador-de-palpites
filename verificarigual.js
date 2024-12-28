@@ -139,7 +139,7 @@ function botaoCalcular(cartela, resultado) {
     }
     let nomesPalpite1 = cartela1.nomes //cartela.txt
     let nomesPalpite2 = cartela2.nomes //resultado1.txt
-    //let valorReferencia = valorReferencia()
+    
     
     // armazena todas as comparaçoes true ou false
     let comparacoes = [comparacaoDeResultados(palpites1[0], palpites2), comparacaoDeResultados(palpites1[1], palpites2),
@@ -162,10 +162,11 @@ function botaoCalcular(cartela, resultado) {
         return index === array.findIndex(f => normalizarFrase(f) === fraseNormalizada);
     });
     
-    // return resultadoFinal
-    console.log(mensagem)
-    console.log(resultadoFinal)
-    return resultadoFinal
+    let msgResultado = ''
+    for (let i = 0; i < resultadoFinal.length; i++) {
+        msgResultado += `${resultadoFinal[i]}`;
+    }
+    return msgResultado
 }
 
 
