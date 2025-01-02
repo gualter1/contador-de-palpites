@@ -193,3 +193,75 @@ button:hover {
     font-size: 30px; /* Aumenta o tamanho para exibir emojis com clareza */
     text-align: center; /* Centraliza o texto */
 }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 10px; /* Espaço para evitar que o conteúdo fique coberto pelo rodapé */
+
+}
+
+/* modificaçoes no site*/
+
+.top-footer {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    height: 50px; /* Altura do rodapé de topo */
+}
+
+.site-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #00aaff;
+}
+
+/* Importando a fonte */
+@font-face {
+    font-family: 'MinhaFonte';
+    src: url('fonts/Gagalin-Regular.woff2') format('woff');
+}
+
+.site-name {
+    font-family: 'MinhaFonte', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #007bff; /* Cor constante para o nome do site */
+    text-decoration: none; /* Remove o sublinhado do link */
+    font-weight: bold; /* Pode adicionar para dar um destaque maior */
+    font-size: 24px; /* Ajuste o tamanho da fonte se necessário */
+    display: inline-block; /* Permite que o link se comporte como um bloco, se necessário */
+}
+
+/* Remover efeitos de hover, active e focus */
+.site-name a:hover,
+.site-name a:active,
+.site-name a:focus {
+    color: #007bff; /* Mantém a mesma cor */
+    text-decoration: none; /* Não mostra o sublinhado */
+    outline: none; /* Remove o contorno de foco, se houver */
+}
+
+/* Garantir que a cor se mantenha independente do estado */
+.site-name a:focus {
+    outline: none; /* Remove o contorno ao focar */
+}

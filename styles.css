@@ -219,3 +219,27 @@ button:hover {
   padding: 10px; /* Espaçamento interno, opcional */
   font-size: 14px; /* Tamanho do texto, ajuste conforme preferir */
 }
+
+/* Importando a fonte */
+@font-face {
+  font-family: 'Gagalin';
+  src: url('fonts/Gagalin-Regular.woff2') format('truetype'); /* Certifique-se do caminho correto */
+}
+
+/* Aplicando a fonte somente ao título */
+.logo-text {
+  font-family: 'Gagalin', sans-serif;
+  font-size: 60px !important;
+  font-weight: bold;
+  text-align: center;
+  color: #007BFF !important;
+  margin: 2px 0;
+}
+
+
+
+.logo-text {
+  font-size: 36px;
+  color: #333;
+  font-weight: bold;
+}

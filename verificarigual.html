@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodapé de Topo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-footer">
+        <div class="site-name"> <a href="index.html">Contador de palpites</a></div>
+        <nav class="navigation">
+            <a href="#pagina1">Página 1</a>
+            <a href="#pagina2">Página 2</a>
+            <a href="#pagina3">Página 3</a>
+        </nav>
+    </div>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,17 +71,17 @@
         <p>Bem-vindo! Siga as instruções abaixo para utilizá-lo:</p>
         <ul>
             <li>Este verificador funciona para <strong>indentificar jogadores com palpites iguais</strong></li>
-            <li>Na primeira caixa de texto, escreva ou cole uma cartela.</li>
-            <li>Na segunda caixa de texto, escreva ou cole a mesma ou outra cartela. Evite cartelas muito editadas, pois o contador lê a maioria delas, mas edições como o uso de fontes personalizadas podem causar erros.</li>
-            <li>Clique no botão "Verificar palpites iguais" para fazer a verificação.</li>
             <li>Erros ou sugestões? Clique no botão "Fale com o Desenvolvedor".</li>
         </ul>
         <form>
             <label for="resultados">Cole ou escreva abaixo os resultados da rodada:</label>
-            <textarea id="resultados" rows="5" placeholder="Digite os resultados, por exemplo: 1-1/2-2/3-3"></textarea>
+            <textarea id="resultados" rows="5" placeholder="Escreva ou cole uma cartela. Evite cartelas muito editadas, pois o contador lê a maioria delas, mas edições como o uso de fontes personalizadas podem causar erros"></textarea>
             
             <label for="sua-cartela">Cole ou escreva abaixo a sua cartela:</label>
-            <textarea id="sua-cartela" rows="5" placeholder="Cole sua cartela completa, que o contador fará o resto do trabalho"></textarea>
+            <textarea id="sua-cartela" rows="5" placeholder="Escreva ou cole a mesma ou outra cartela. Evite cartelas muito editadas, pois o contador lê a maioria delas, mas edições como o uso de fontes personalizadas podem causar erros
+            
+Clique no botão Verificar palpites iguais para fazer a verificação.
+            "></textarea>
             
             <label for="caixa-valor">
                 Escolha um valor entre 1 e 10 para comparação. Se você não escolher um valor, ele apresentará todas as comparações iguais a 5 ou mais:

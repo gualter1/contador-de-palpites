@@ -12,6 +12,18 @@ const palpiteFake = '50X40'
 const cravada = 3
 const acerto = 1
 
+function pontos() {
+    let cravada = document.getElementById('imput1').value.trim()
+    if (cravada === '') {
+        cravada = 3
+    }
+
+    let acerto = document.getElementById('imput2').value.trim()
+    if (acerto === '') {
+        acerto = 1
+    }
+    return {cravada, acerto}
+}
 
 function preparaJogos(palpites) {
     let palpite = []
