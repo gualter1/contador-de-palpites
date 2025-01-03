@@ -1,0 +1,3 @@
+Sobre o Contador de Palpites
+
+O Contador de Palpites foi criado com o objetivo de facilitar o trabalho dos presidentes e administradores de ligas na elaboração de súmulas. A plataforma oferece uma solução prática e rápida para organizar e validar os palpites dos participantes, economizando tempo e esforço. Com recursos que identificam e anulam palpites nulos automaticamente, o site garante maior precisão nas súmulas, permitindo que os responsáveis pela liga se concentrem no que realmente importa. A nossa missão é tornar a gestão de ligas mais eficiente e livre de complicações, oferecendo uma experiência ágil e sem erros.

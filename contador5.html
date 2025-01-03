@@ -27,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de palpites</title>
-    <link rel="stylesheet" href="contador5.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         .buttons {
             display: flex;
@@ -74,7 +74,7 @@
 
 <body>
     <div class="container">
-        <h1>Contador de Palpites Ate 5 Jogadores</h1>
+        <h1>Contador Ate 5 Jogadores</h1>
         <p>Bem-vindo! Siga as instruções abaixo para utilizá-lo:</p>
         <ul>
             <li>Este contador só serve para ligas <strong>ate 5 jogadores.</strong> Caso você participe de ligas maiores, utilize o   <strong><a href="contador10.html">contador de ligas maiores</a></strong>.</li>
@@ -100,7 +100,7 @@ Jogador fake = jogador a menos.
 "></textarea>
 
             <label for="caixa-emoji">Digite um emoji para enfeitar sua sumula, se voce nao escolher nenhum o padrao vai ser a ⚽:</label>
-            <input type="text" class="caixa-emoji" placeholder="⚽" maxlength="5">
+            <input type="text" class="input-pequeno caixa-emoji" placeholder="⚽" maxlength="5">
             
             <div class="buttons">
                 <button type="button" onclick="calcularSumula()" id="botao-calcular"><strong>Calcular minha súmula</strong></button>
@@ -115,9 +115,16 @@ Jogador fake = jogador a menos.
             </a>
         </div>
     </div>
-    <footer>
-        <p>Feito com ajuda do <strong>ChatGPT</strong></p>
-    </footer>
+    <footer class="site-footer">
+        <div class="footer-content">
+          <p>&copy; 2025 Contador de palpites. Todos os direitos reservados. Feito com ajuda do <strong>ChatGPT</strong></p>
+          <nav class="footer-nav">
+            <a href="sobre.html">Sobre</a>
+            <a href="https://wa.me/5585987636157">Contato</a>
+            <a href="politica.html">Política de Privacidade</a>
+          </nav>
+        </div>
+      </footer>
     <script src="contador5.js"></script>
 </body>
 
