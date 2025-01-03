@@ -288,14 +288,29 @@ button:hover {
 /* Estilo para o nome do site */
 .site-name a {
   font-family: 'MinhaFonte', sans-serif;
-  font-size: 5.3vw; /* Tamanho da fonte baseado na largura da tela */
+  font-size: 36px; /* Tamanho padrão para telas grandes */
   font-weight: 700;
   color: #007bff;
   text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; /* Evita que o texto quebre em linhas */
+  overflow: hidden; /* Oculta conteúdo extra */
+  text-overflow: ellipsis; /* Adiciona "..." se necessário */
 }
+
+/* Ajuste automático para telas menores */
+@media (max-width: 768px) {
+  .site-name a {
+    font-size: 24px; /* Diminui o tamanho da fonte */
+    text-align: center; /* Centraliza o texto */
+  }
+}
+
+@media (max-width: 480px) {
+  .site-name a {
+    font-size: 18px; /* Fonte ainda menor para telas muito pequenas */
+  }
+}
+
 
 
 /* Estilo do menu dropdown */
